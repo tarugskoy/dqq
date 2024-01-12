@@ -1559,6 +1559,11 @@ async def auto_filter(client, msg, spoll=False):
             ]
             for file in files
         ]
+    # Schedule the deletion of the message after a certain time
+    delete_delay = 60  # Set the delay time in seconds (e.g., 60 seconds)
+    await asyncio.sleep(delete_delay)
+    # Delete the message containing the inline keyboard buttons
+    await client.delete_message(chat_id=message.chat.id, message_id=message.message_id)  
     elif ENABLE_SHORTLINK and not settings["button"]:
         btn = [
             [
@@ -1573,6 +1578,11 @@ async def auto_filter(client, msg, spoll=False):
             ]
             for file in files
         ]
+    # Schedule the deletion of the message after a certain time
+    delete_delay = 60  # Set the delay time in seconds (e.g., 60 seconds)
+    await asyncio.sleep(delete_delay)
+    # Delete the message containing the inline keyboard buttons
+    await client.delete_message(chat_id=message.chat.id, message_id=message.message_id)  
     elif settings["button"] and not ENABLE_SHORTLINK:
         btn = [
             [
@@ -1596,6 +1606,11 @@ async def auto_filter(client, msg, spoll=False):
             ]
             for file in files
         ]
+    # Schedule the deletion of the message after a certain time
+    delete_delay = 60  # Set the delay time in seconds (e.g., 60 seconds)
+    await asyncio.sleep(delete_delay)
+    # Delete the message containing the inline keyboard buttons
+    await client.delete_message(chat_id=message.chat.id, message_id=message.message_id)  
     try:
         if settings['auto_delete']:
             btn.insert(0, 
