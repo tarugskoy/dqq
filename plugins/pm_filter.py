@@ -1550,41 +1550,39 @@ async def auto_filter(client, msg, spoll=False):
         await save_group_settings(message.chat.id, 'is_shortlink', False)
         ENABLE_SHORTLINK = False
     pre = 'filep' if settings['file_secure'] else 'file'
-if ENABLE_SHORTLINK and settings["button"]:
-    btn = [
-        [
-            InlineKeyboardButton(
-                text=f"[{get_size(file.file_size)}] {file.file_name}",
-                url=await get_shortlink(message.chat.id, f"https://telegram.me/{temp.U_NAME}?start=files_{file.file_id}")
-            ),
+    if ENABLE_SHORTLINK and settings["button"]:
+        btn = [
+            [
+                InlineKeyboardButton(
+                    text=f"[{get_size(file.file_size)}] {file.file_name}", url=await get_shortlink(message.chat.id, f"https://telegram.me/{temp.U_NAME}?start=files_{file.file_id}")
+                ),
+            ]
+            for file in files
         ]
-        for file in files
-    ]
-    # Schedule the deletion of the message after a certain time
-    delete_delay = 60  # Set the delay time in seconds (e.g., 60 seconds)
-    await asyncio.sleep(delete_delay)
-    # Delete the message containing the inline keyboard buttons
-    await client.delete_message(chat_id=message.chat.id, message_id=message.message_id)
-
-elif ENABLE_SHORTLINK and not settings["button"]:
-    btn = [
-        [
-            InlineKeyboardButton(
-                text=f"{file.file_name}",
-                url=await get_shortlink(message.chat.id, f"https://telegram.me/{temp.U_NAME}?start=files_{file.file_id}")
-            ),
-            InlineKeyboardButton(
-                text=f"{get_size(file.file_size)}",
-                url=await get_shortlink(message.chat.id, f"https://telegram.me/{temp.U_NAME}?start=files_{file.file_id}")
-            ),
+        # Schedule the deletion of the message after a certain time
+        delete_delay = 60  # Set the delay time in seconds (e.g., 60 seconds)
+        await asyncio.sleep(delete_delay)
+        # Delete the message containing the inline keyboard buttons
+        await client.delete_message(chat_id=message.chat.id, message_id=message.message_id)
+    elif ENABLE_SHORTLINK and not settings["button"]:
+        btn = [
+            [
+                InlineKeyboardButton(
+                    text=f"{file.file_name}",
+                    url=await get_shortlink(message.chat.id, f"https://telegram.me/{temp.U_NAME}?start=files_{file.file_id}")
+                ),
+                InlineKeyboardButton(
+                    text=f"{get_size(file.file_size)}",
+                    url=await get_shortlink(message.chat.id, f"https://telegram.me/{temp.U_NAME}?start=files_{file.file_id}")
+                ),
+            ]
+            for file in files
         ]
-        for file in files
-    ]
-    # Schedule the deletion of the message after a certain time
-    delete_delay = 60  # Set the delay time in seconds (e.g., 60 seconds)
-    await asyncio.sleep(delete_delay)
-    # Delete the message containing the inline keyboard buttons
-    await client.delete_message(chat_id=message.chat.id, message_id=message.message_id)
+        # Schedule the deletion of the message after a certain time
+        delete_delay = 60  # Set the delay time in seconds (e.g., 60 seconds)
+        await asyncio.sleep(delete_delay)
+        # Delete the message containing the inline keyboard buttons
+        await client.delete_message(chat_id=message.chat.id, message_id=message.message_id)
     elif settings["button"] and not ENABLE_SHORTLINK:
         btn = [
             [
@@ -1594,6 +1592,11 @@ elif ENABLE_SHORTLINK and not settings["button"]:
             ]
             for file in files
         ]
+        # Schedule the deletion of the message after a certain time
+        delete_delay = 60  # Set the delay time in seconds (e.g., 60 seconds)
+        await asyncio.sleep(delete_delay)
+        # Delete the message containing the inline keyboard buttons
+        await client.delete_message(chat_id=message.chat.id, message_id=message.message_id)
     else:
         btn = [
             [
@@ -1608,6 +1611,11 @@ elif ENABLE_SHORTLINK and not settings["button"]:
             ]
             for file in files
         ]
+        # Schedule the deletion of the message after a certain time
+        delete_delay = 60  # Set the delay time in seconds (e.g., 60 seconds)
+        await asyncio.sleep(delete_delay)
+        # Delete the message containing the inline keyboard buttons
+        await client.delete_message(chat_id=message.chat.id, message_id=message.message_id)
     # Schedule the deletion of the message after a certain time
     delete_delay = 60  # Set the delay time in seconds (e.g., 60 seconds)
     await asyncio.sleep(delete_delay)
